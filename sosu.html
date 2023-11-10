@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>素数判定</title>
+    <style>
+        body {
+            background-image: url('"C:/Users/hiros/OneDrive/画像/chalkboard-black-pattern-01.jpg');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="numericInput">数字を入力してください:</label>
+        <input type="number" id="numericInput" min="2">
+        <span id="error" style="color: red;"></span>
+    </div>
+    <div>
+        <button onclick="checkPrime()">素数判定</button>
+    </div>
+
+    <script>
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i < Math.sqrt(num) + 1; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function checkPrime() {
+            const numericInput = document.getElementById("numericInput");
+            const errorSpan = document.getElementById("error");
+            const value = parseInt(numericInput.value);
+
+            if (isNaN(value) || value <= 1 || value % 1 !== 0) {
+                errorSpan.textContent = "2以上の整数を入力してください。";
+            } else {
+                if (isPrime(value)) {
+                    alert(value + " は素数です。");
+                } else {
+                    alert(value + " は素数ではありません。");
+                }
+                errorSpan.textContent = "";
+            }
+        }
+    </script>
+</body>
+</html>
